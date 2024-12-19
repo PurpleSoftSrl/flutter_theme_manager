@@ -1,7 +1,7 @@
 name: purple_theme
 description: A simple theme manager for Flutter apps.
-version: 0.0.1
-homepage:
+version: 0.1.0
+homepage: www.purplesoft.io
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
