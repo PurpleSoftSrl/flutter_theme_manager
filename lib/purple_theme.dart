@@ -1,5 +1,3 @@
-library purple_theme;
-
 import 'package:flutter/material.dart';
 
 class PurpleThemeHandler {
@@ -28,21 +26,21 @@ class PurpleThemeHandler {
 
 class PurpleTheme extends StatefulWidget {
   const PurpleTheme({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
-  static _PurpleThemeState of(BuildContext context) {
-    return context.findAncestorStateOfType<_PurpleThemeState>()!;
+  static PurpleThemeState of(BuildContext context) {
+    return context.findAncestorStateOfType<PurpleThemeState>()!;
   }
 
   @override
-  _PurpleThemeState createState() => _PurpleThemeState();
+  PurpleThemeState createState() => PurpleThemeState();
 }
 
-class _PurpleThemeState extends State<PurpleTheme> {
+class PurpleThemeState extends State<PurpleTheme> {
   UniqueKey _key = UniqueKey();
 
   /// Change the current theme and rebuilds the widget
