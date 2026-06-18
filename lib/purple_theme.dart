@@ -10,25 +10,24 @@ class PurpleThemeHandler {
   }) {
     _light = lightTheme;
     _dark = darkTheme;
-    _isDark = isDark;
-    themeModeNotifier.value = isDark ? ThemeMode.dark : ThemeMode.light;
     _themes.addAll(allThemes);
+    _setDarkMode(isDark);
   }
 
   static final Map<String, ThemeData> _themes = {};
 
   static ThemeData? _light;
   static ThemeData? _dark;
-  static bool _isDark = false;
-  static final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(ThemeMode.light);
+  static final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(ThemeMode.system);
 
   static ThemeData get lightTheme => _light!;
   static ThemeData get darkTheme => _dark!;
-  static bool get isDark => _isDark;
+  static ThemeMode get themeMode => themeModeNotifier.value;
+  static bool get isDark => themeModeNotifier.value == ThemeMode.dark;
 
-  /// Toggle dark/light. Persist `Keys.isDarkMode` in the caller.
-  static void toggleDarkMode() {
-    _isDark = !_isDark;
-    themeModeNotifier.value = _isDark ? ThemeMode.dark : ThemeMode.light;
+  static void toggleDarkMode() => _setDarkMode(themeModeNotifier.value != ThemeMode.dark);
+
+  static void _setDarkMode(bool dark) {
+    themeModeNotifier.value = dark ? ThemeMode.dark : ThemeMode.light;
   }
 }
