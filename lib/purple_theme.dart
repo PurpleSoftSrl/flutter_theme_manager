@@ -18,7 +18,7 @@ class PurpleThemeHandler {
 
   static ThemeData? _light;
   static ThemeData? _dark;
-  static final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(ThemeMode.system);
+  static final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(ThemeMode.light);
 
   static ThemeData get lightTheme => _light!;
   static ThemeData get darkTheme => _dark!;
