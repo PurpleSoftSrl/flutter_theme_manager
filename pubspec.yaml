@@ -5,7 +5,7 @@ homepage: www.purplesoft.io
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=3.22.0"
+  flutter: 
 
 dependencies:
   flutter:
@@ -15,6 +15,5 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
-
+  flutter_lints: 
 flutter:
