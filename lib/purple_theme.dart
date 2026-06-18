@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
 
 /// Reactive theme mode — official Flutter `ValueNotifier` pattern.
-/// No custom class, no legacy, no backward compat.
+///
+/// Usage:
+/// ```dart
+/// // Wrap MaterialApp with AnimatedBuilder:
+/// AnimatedBuilder(
+///   animation: themeModeNotifier,
+///   builder: (_, __) => MaterialApp(
+///     themeMode: themeModeNotifier.value,
+///     theme: lightTheme,
+///     darkTheme: darkTheme,
+///     ...
+///   ),
+/// )
+///
+/// // Toggle from any widget:
+/// toggleDarkMode();
+///
+/// // Read current mode:
+/// if (isDarkMode) { ... }
+/// ```
 final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(ThemeMode.light);
 
 ThemeData? _lightTheme;
