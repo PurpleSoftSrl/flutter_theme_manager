@@ -1,33 +1,22 @@
 import 'package:flutter/material.dart';
 
-/// Single source of truth for theme state — ValueNotifier-driven, no legacy.
-class PurpleThemeHandler {
-  void init({
-    required ThemeData lightTheme,
-    required ThemeData darkTheme,
-    required Map<String, ThemeData> allThemes,
-    bool isDark = false,
-  }) {
-    _light = lightTheme;
-    _dark = darkTheme;
-    _themes.addAll(allThemes);
-    _setDarkMode(isDark);
-  }
+/// Reactive theme mode — official Flutter `ValueNotifier` pattern.
+/// No custom class, no legacy, no backward compat.
+final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(ThemeMode.light);
 
-  static final Map<String, ThemeData> _themes = {};
+ThemeData? _lightTheme;
+ThemeData? _darkTheme;
 
-  static ThemeData? _light;
-  static ThemeData? _dark;
-  static final ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier(ThemeMode.light);
+void initThemes({required ThemeData light, required ThemeData dark, bool isDark = false}) {
+  _lightTheme = light;
+  _darkTheme = dark;
+  themeModeNotifier.value = isDark ? ThemeMode.dark : ThemeMode.light;
+}
 
-  static ThemeData get lightTheme => _light!;
-  static ThemeData get darkTheme => _dark!;
-  static ThemeMode get themeMode => themeModeNotifier.value;
-  static bool get isDark => themeModeNotifier.value == ThemeMode.dark;
+ThemeData get lightTheme => _lightTheme!;
+ThemeData get darkTheme => _darkTheme!;
+bool get isDarkMode => themeModeNotifier.value == ThemeMode.dark;
 
-  static void toggleDarkMode() => _setDarkMode(themeModeNotifier.value != ThemeMode.dark);
-
-  static void _setDarkMode(bool dark) {
-    themeModeNotifier.value = dark ? ThemeMode.dark : ThemeMode.light;
-  }
+void toggleDarkMode() {
+  themeModeNotifier.value = isDarkMode ? ThemeMode.light : ThemeMode.dark;
 }
