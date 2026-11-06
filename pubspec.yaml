@@ -1,6 +1,6 @@
 name: purple_theme
 description: A simple theme manager for Flutter apps.
-version: 0.2.0
+version: 0.3.0
 homepage: www.purplesoft.io
 
 environment:
@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: 
+  material_ui: ^1.10.0
 
 dev_dependencies:
   flutter_test:
